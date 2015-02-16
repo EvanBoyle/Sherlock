@@ -36,13 +36,20 @@
             },
             search: function(){
 
+                var url = this.props.url + 
+                "/indexes/" + 
+                this.props.index +
+                "/docs?search=" +
+                encodeURIComponent(this.refs.searchText.getDOMNode().value) + 
+                "&api-version=2014-07-31-Preview"
+                console.info(url);
 
             },
             render: function() {
                 var self = this;
                 return (
                     <div>
-                        <input type="text"/>  
+                        <input type="text" ref="searchText"/>  
                         <button onClick={this.search}>Search</button>
                         <SearchResults results={this.state.results}/>
                     </div>
@@ -71,7 +78,7 @@
             }
         })
 
-        React.render(<Sherlock url="https://demo.search.windows.net" apikey="1BBCE7C4AA658E5B7A4A0538029E637A"/>, document.body);
+        React.render(<Sherlock url="https://demo.search.windows.net" apikey="1BBCE7C4AA658E5B7A4A0538029E637A" index="wiki1m"/>, document.body);
     </script>
 </body>
 </html>
