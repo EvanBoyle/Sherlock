@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+    <style type="text/css">
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/JSXTransformer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router/0.11.6/react-router.js"></script>
+    <script src="https://kenwheeler.github.io/mcfly/McFly.js"></script>
+</head>
+<body>
+    <div id="app-container"></div>
+    <script type="text/jsx">
+
+        /** McFly */
+
+        var Flux = new McFly();
+
+
+        var Sherlock = React.createClass({
+            getInitialState: function(){
+                return {
+                    results: []
+                }
+            },
+            search: function(){
+                console.info("search");
+                this.setState({results: [
+                        "abc",
+                        "def",
+                        "hij",
+                        "klmnop"
+                    ]});
+            },
+            render: function() {
+                var self = this;
+                return (
+                    <div>
+                        <input type="text"/>  
+                        <button onClick={this.search}>Search</button>
+                        <SearchResults results={this.state.results}/>
+                    </div>
+                )
+            }
+        });
+
+        var SearchResults = React.createClass({
+
+            render: function(){
+                return (
+                    <table>
+                        {this.props.results.map(function(result, index){
+                            return <SearchResult result={result} key={index}/>
+                        })}
+                    </table>
+                )
+            }
+        });
+
+        var SearchResult = React.createClass({
+            render: function(){
+                return(
+                    <tr key={this.props.key}><td>{this.props.result}</td></tr>   
+                )
+            }
+        })
+
+        React.render(<Sherlock />, document.body);
+    </script>
+</body>
+</html>
