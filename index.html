@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/JSXTransformer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router/0.11.6/react-router.js"></script>
     <script src="https://kenwheeler.github.io/mcfly/McFly.js"></script>
+    <script src="q.js"></script>
 </head>
 <body>
     <div id="app-container"></div>
@@ -24,7 +25,7 @@
                     results: []
                 }
             },
-            search: function(){
+            dummySearch: function(){
                 console.info("search");
                 this.setState({results: [
                         "abc",
@@ -32,6 +33,10 @@
                         "hij",
                         "klmnop"
                     ]});
+            },
+            search: function(){
+
+
             },
             render: function() {
                 var self = this;
@@ -66,7 +71,7 @@
             }
         })
 
-        React.render(<Sherlock />, document.body);
+        React.render(<Sherlock url="https://demo.search.windows.net" apikey="1BBCE7C4AA658E5B7A4A0538029E637A"/>, document.body);
     </script>
 </body>
 </html>
