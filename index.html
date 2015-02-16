@@ -8,6 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.12.2/JSXTransformer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router/0.11.6/react-router.js"></script>
     <script src="https://kenwheeler.github.io/mcfly/McFly.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="q.js"></script>
 </head>
 <body>
@@ -42,14 +43,25 @@
                 "/docs?search=" +
                 encodeURIComponent(this.refs.searchText.getDOMNode().value) + 
                 "&api-version=2014-07-31-Preview"
-                console.info(url);
-
+                $.ajax({
+                    url: url,
+                    headers: {'api-key': this.props.apikey},
+                    success: this.processResults
+                });
+            },
+            handleKeyDown: function(evt) {
+                if (evt.keyCode == 13 ) {
+                    return this.search();
+                }
+            },
+            processResults: function(data){
+                this.setState({results: data.value});
             },
             render: function() {
                 var self = this;
                 return (
                     <div>
-                        <input type="text" ref="searchText"/>  
+                        <input type="text" ref="searchText" onKeyDown={this.handleKeyDown}/>  
                         <button onClick={this.search}>Search</button>
                         <SearchResults results={this.state.results}/>
                     </div>
@@ -73,7 +85,7 @@
         var SearchResult = React.createClass({
             render: function(){
                 return(
-                    <tr key={this.props.key}><td>{this.props.result}</td></tr>   
+                    <tr key={this.props.key}><td>{JSON.stringify(this.props.result)}</td></tr>   
                 )
             }
         })
