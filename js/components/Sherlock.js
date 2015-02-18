@@ -47,8 +47,9 @@ var Sherlock = React.createClass({
     render: function() {
         var self = this;
         return (
-            <div className="row">
-                <div className="col-md-6 col-lg-offset-3">
+            <div className="container">
+                <div className="row">
+     
                     <div className="input-group">
                         <input type="text" className="form-control" ref="searchText" onKeyDown={this.handleKeyDown}/>  
                         <span className="input-group-btn">
