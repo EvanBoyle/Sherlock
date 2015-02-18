@@ -5,10 +5,12 @@ var SearchResults = React.createClass({
 
 	render: function(){
 		return (
-			<table>
+			<table className="table">
+			<tbody>
 			{this.props.results.map(function(result, index){
 				return <SearchResult result={result} key={index}/>
 			})}
+			</tbody>
 			</table>
 			)
 	}

@@ -47,10 +47,16 @@ var Sherlock = React.createClass({
     render: function() {
         var self = this;
         return (
-            <div>
-            <input type="text" ref="searchText" onKeyDown={this.handleKeyDown}/>  
-            <button onClick={this.search}>Search</button>
-            <SearchResults results={this.state.results}/>
+            <div className="row">
+                <div className="col-md-6 col-lg-offset-3">
+                    <div className="input-group">
+                        <input type="text" className="form-control" ref="searchText" onKeyDown={this.handleKeyDown}/>  
+                        <span className="input-group-btn">
+                            <button className="btn btn-default" type="button" onClick={this.search}>Search</button>
+                        </span>
+                    </div>
+                    <SearchResults results={this.state.results}/>
+                </div>
             </div>
             )
     }
