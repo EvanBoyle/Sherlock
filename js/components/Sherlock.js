@@ -49,7 +49,7 @@ var Sherlock = React.createClass({
         return (
             <div className="container">
                 <div className="row">
-     
+                    <div className="col-md-8 col-md-offset-2">
                     <div className="input-group">
                         <input type="text" className="form-control" ref="searchText" onKeyDown={this.handleKeyDown}/>  
                         <span className="input-group-btn">
@@ -57,6 +57,7 @@ var Sherlock = React.createClass({
                         </span>
                     </div>
                     <SearchResults results={this.state.results}/>
+                    </div>
                 </div>
             </div>
             )
